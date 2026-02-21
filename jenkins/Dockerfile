@@ -17,4 +17,7 @@ RUN curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.31.0/kind-linux-amd64 && \
     install -o root -g root -m 0755 kind /usr/local/bin/kind && \
     rm kind
 
+# FIX: Add jenkins user to docker group
+RUN groupadd docker || true && usermod -aG docker jenkins
+
 USER jenkins
